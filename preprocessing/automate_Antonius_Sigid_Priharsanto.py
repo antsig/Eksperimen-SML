@@ -42,7 +42,7 @@ def main():
     train_df, test_df = train_test_split(df_processed, test_size=0.2, random_state=42, stratify=df_processed['species'])
     
     # Save
-    output_dir = os.path.join(base_dir, 'preprocessing', 'iris_preprocessing')
+    output_dir = os.path.join(os.path.dirname(base_dir), 'Membangun_model', 'iris_preprocessing')
     os.makedirs(output_dir, exist_ok=True)
     train_path = os.path.join(output_dir, 'train.csv')
     test_path = os.path.join(output_dir, 'test.csv')
