@@ -9,9 +9,9 @@ def load_data(filepath):
 
 def preprocess_data(df):
     print("Preprocessing data...")
-    # Pisahkan fitur dan target (target: species)
-    X = df.drop('species', axis=1)
-    y = df['species']
+    # Pisahkan fitur dan target (target: target)
+    X = df.drop('target', axis=1)
+    y = df['target']
     
     # Menangani missing values (jika ada)
     X = X.fillna(X.median())
@@ -22,13 +22,13 @@ def preprocess_data(df):
     
     # Gabungkan kembali
     df_processed = X_scaled.copy()
-    df_processed['species'] = y
+    df_processed['target'] = y
     
     return df_processed
 
 def main():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    raw_data_path = os.path.join(base_dir, 'iris_raw', 'raw.csv')
+    raw_data_path = os.path.join(base_dir, 'breast_cancer_raw', 'raw.csv')
     
     if not os.path.exists(raw_data_path):
         print(f"File {raw_data_path} not found. Please ensure it exists.")
@@ -39,10 +39,10 @@ def main():
     
     # Split
     print("Splitting data into train and test sets...")
-    train_df, test_df = train_test_split(df_processed, test_size=0.2, random_state=42, stratify=df_processed['species'])
+    train_df, test_df = train_test_split(df_processed, test_size=0.2, random_state=42, stratify=df_processed['target'])
     
     # Save
-    output_dir = os.path.join(os.path.dirname(base_dir), 'Membangun_model', 'iris_preprocessing')
+    output_dir = os.path.join(os.path.dirname(base_dir), 'Membangun_model', 'breast_cancer_preprocessing')
     os.makedirs(output_dir, exist_ok=True)
     train_path = os.path.join(output_dir, 'train.csv')
     test_path = os.path.join(output_dir, 'test.csv')
