@@ -3,7 +3,7 @@ name: Data Preprocessing
 on:
   push:
     paths:
-      - "iris_raw/raw.csv"
+      - "breast_cancer_raw/raw.csv"
       - "preprocessing/automate_Antonius_Sigid_Priharsanto.py"
   workflow_dispatch:
 
@@ -33,6 +33,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add preprocessing/iris_preprocessing/train.csv preprocessing/iris_preprocessing/test.csv
+          git add preprocessing/breast_cancer_preprocessing/train.csv preprocessing/breast_cancer_preprocessing/test.csv
           git commit -m "Auto-preprocess data" -a || echo "No changes to commit"
           git push
